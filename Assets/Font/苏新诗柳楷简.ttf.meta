@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f29f367c5b96f2e47a65c346c433bc89
+timeCreated: 1503483190
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SXSLKJ
+  fontNames:
+  - SXSLKJ
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

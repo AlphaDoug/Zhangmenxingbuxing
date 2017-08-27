@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ff8059fa9bfa2654e839d8d039512be0
+timeCreated: 1503462243
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: FZZJ-LJDFONT
+  fontNames:
+  - FZZJ-LJDFONT
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
