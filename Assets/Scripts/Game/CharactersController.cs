@@ -35,6 +35,7 @@ namespace SwordsmanGame
         private Vector2 currentPosition;
         private Animator m_Animator;
         private CharacterState m_CharacterState;
+        private int animationIndex;
 
         void Start()
         {
@@ -42,7 +43,8 @@ namespace SwordsmanGame
             m_CharacterState = CharacterState.standDown;
             lastPosition = transform.position;
             currentPosition = lastPosition;
-            
+            animationIndex = Random.Range(0, 4);
+            m_Animator.Play("StandDownAnimation" + animationIndex.ToString());
         }
 
         // Update is called once per frame
@@ -50,52 +52,52 @@ namespace SwordsmanGame
         {
             SetCharacterState();
 
-            UpdateInfoPosition();
+           // UpdateInfoPosition();
 
             #region 控制角色行走动画
             //if (Vector3.Distance(m_targetPosition, this.transform.position) > m_notMoveDistance)
             //{
             //    this.transform.Translate(m_speed * Time.deltaTime * (Vector2)Vector3.Normalize(m_targetPosition - (Vector2)this.transform.position));
             //}
-            if (m_CharacterState == CharacterState.standDown && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "StandDownAnimation")
+            if (m_CharacterState == CharacterState.standDown && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "StandDownAnimation" + animationIndex.ToString())
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
-                m_Animator.Play("StandDownAnimation");
+                m_Animator.Play("StandDownAnimation" + animationIndex.ToString());
             }
-            if (m_CharacterState == CharacterState.walkDown && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "WalkDownAnimation")
+            if (m_CharacterState == CharacterState.walkDown && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "WalkDownAnimation" + animationIndex.ToString())
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
-                m_Animator.Play("WalkDownAnimation");
+                m_Animator.Play("WalkDownAnimation" + animationIndex.ToString());
             }
-            if (m_CharacterState == CharacterState.standRight && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "StandRightAnimation")
+            if (m_CharacterState == CharacterState.standRight && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "StandRightAnimation" + animationIndex.ToString())
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
-                m_Animator.Play("StandRightAnimation");
+                m_Animator.Play("StandRightAnimation" + animationIndex.ToString());
             }
-            if (m_CharacterState == CharacterState.standUp && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "StandUpAnimation")
+            if (m_CharacterState == CharacterState.standUp && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "StandUpAnimation" + animationIndex.ToString())
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
-                m_Animator.Play("StandUpAnimation");
+                m_Animator.Play("StandUpAnimation" + animationIndex.ToString());
             }
-            if (m_CharacterState == CharacterState.walkRight && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "WalkRightAnimation")
+            if (m_CharacterState == CharacterState.walkRight && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "WalkRightAnimation" + animationIndex.ToString())
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
-                m_Animator.Play("WalkRightAnimation");
+                m_Animator.Play("WalkRightAnimation" + animationIndex.ToString());
             }
-            if (m_CharacterState == CharacterState.walkUp && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "WalkUpAnimation")
+            if (m_CharacterState == CharacterState.walkUp && m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "WalkUpAnimation" + animationIndex.ToString())
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
-                m_Animator.Play("WalkUpAnimation");
+                m_Animator.Play("WalkUpAnimation" + animationIndex.ToString());
             }
             if (m_CharacterState == CharacterState.standLeft)
             {
                 this.GetComponent<SpriteRenderer>().flipX = true;
-                m_Animator.Play("StandRightAnimation");
+                m_Animator.Play("StandRightAnimation" + animationIndex.ToString());
             }
             if (m_CharacterState == CharacterState.walkLeft)
             {
                 this.GetComponent<SpriteRenderer>().flipX = true;
-                m_Animator.Play("WalkRightAnimation");
+                m_Animator.Play("WalkRightAnimation" + animationIndex.ToString());
             }
             #endregion
         }
@@ -110,19 +112,19 @@ namespace SwordsmanGame
             deltaPosition = Vector3.Normalize(deltaPosition);
             if (deltaPosition == Vector2.zero)
             {
-                if (m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "WalkRightAnimation")
+                if (m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "WalkRightAnimation" + animationIndex.ToString())
                 {
                     m_CharacterState = CharacterState.standRight;
                 }
-                if (m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "WalkRightAnimation" && this.GetComponent<SpriteRenderer>().flipX)
+                if (m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "WalkRightAnimation" + animationIndex.ToString() && this.GetComponent<SpriteRenderer>().flipX)
                 {
                     m_CharacterState = CharacterState.standLeft;
                 }
-                if (m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "WalkDownAnimation")
+                if (m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "WalkDownAnimation" + animationIndex.ToString())
                 {
                     m_CharacterState = CharacterState.standDown;
                 }
-                if (m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "WalkUpAnimation")
+                if (m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "WalkUpAnimation" + animationIndex.ToString())
                 {
                     m_CharacterState = CharacterState.standUp;
                 }

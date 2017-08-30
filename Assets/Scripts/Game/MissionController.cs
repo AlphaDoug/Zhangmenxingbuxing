@@ -73,7 +73,6 @@ public class MissionController : MonoBehaviour
                 {
                     return;
                 }
-
             }
             isMissionShown[randomIndex] = true;
             currentMissionID.Add(missionID[randomIndex] * 100);
@@ -158,7 +157,7 @@ public class MissionController : MonoBehaviour
             {
                 //HaveNewTasksEvent(true);
                 GameObject.Find("MissionBtn").SendMessage("MissionController_HaveNewTasksEvent", true);
-                Facade.Instance.PlayNormalSound(AudioManager.Sound_Warning);
+                //Facade.Instance.PlayNormalSound(AudioManager.Sound_Warning);
             }
             yield return new WaitForSeconds(1);
         }

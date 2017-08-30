@@ -33,10 +33,16 @@ public class Button_hecheng : MonoBehaviour {
 				ClickTime = Time.time;
 			}
 		}
-		if (jh.judge_dizi&&jh.judge_juanzhou&&jh.judge_maobi&&CountText.count < CountText.maximum)
-			Panel_hecheng.SetActive (true);
-		if((!jh.judge_dizi||!jh.judge_juanzhou||!jh.judge_maobi)&&CountText.count < CountText.maximum)
-			notEnoughWarning.SetActive(true);
+        if (jh.judge_dizi && jh.judge_juanzhou && jh.judge_maobi && CountText.count < CountText.maximum)
+        {
+            Debug.LogError("we are here setting panel to active");
+            Panel_hecheng.SetActive(true);
+        }
+        if ((!jh.judge_dizi || !jh.judge_juanzhou || !jh.judge_maobi) && CountText.count < CountText.maximum)
+        {
+            Debug.LogError(CountText.count + " " + CountText.maximum);
+            notEnoughWarning.SetActive(true);
+        }
     }
 		
 }

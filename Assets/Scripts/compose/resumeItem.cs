@@ -9,7 +9,7 @@ public class resumeItem : MonoBehaviour {
 	private string maobi_name;
 	private string juanzhou_name;
 
-	void Start () 
+	public void itemresume () 
 	{
 		jh = GameObject.Find ("Canvas_合成/Image_judge").GetComponent<judge_hecheng> ();
 
@@ -37,19 +37,19 @@ public class resumeItem : MonoBehaviour {
 
         switch (maobi_name)
         {
-            case "maobi1":
+            case "yanghaobi":
                 GameDataManager.data.material.yanghaobi--;
                 break;
-            case "maobi2":
+            case "yusunbi":
                 GameDataManager.data.material.yusunbi--;
                 break;
-            case "maobi3":
+            case "xiangyalanghao":
                 GameDataManager.data.material.xiangyalanghao--;
                 break;
-            case "maobi4":
+            case "yuzanzihao":
                 GameDataManager.data.material.yuzanzihao--;
                 break;
-            case "maobi5":
+            case "miaojinyunlong":
                 GameDataManager.data.material.miaojinyunlong--;
                 break;
         }

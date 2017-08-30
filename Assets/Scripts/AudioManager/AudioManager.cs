@@ -18,7 +18,7 @@ public class AudioManager
     public const string Sound_Warning = "Warning";
     public const string Sound_Error = "Error";
     public const string Sound_GetSomething = "GetSomething";
-    public const string Sound_OnClick = "OnClick";
+
 
     private AudioSource bgAudioSource;
     private AudioSource normalAudioSource;

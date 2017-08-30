@@ -14,8 +14,17 @@ public class ReadyHero : MonoBehaviour {
 
     private bool isTempChoose = false;
     public string i = "noChoose";
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+
+    private void OnEnable()
+    {
+        gameObject.GetComponent<Image>().sprite = m_sprite;
+        GameObject temple = GameObject.Find("Fight/Temple");
+        GameObject.Find(pre + tempName).GetComponent<HeroInfo>().CancelBeChoose();
+        i = "noChoose";
+    }
+
+    void Start () {
         pre = "Fight/ChooseList/ScrollRect/Vertical Layout/Horizontal Layout/";
         button = GetComponent<Button>();
         close = transform.Find("Close").GetComponent<Button>();
@@ -30,7 +39,6 @@ public class ReadyHero : MonoBehaviour {
                 {
                     m_infoList = GameObject.Find("Fight/InfoList").GetComponent<InfoList>();
                     tempName = m_infoList.heroinfo.transform.name;
-                    Debug.Log("选择了" + tempName);
                     GameObject.Find(pre + tempName).GetComponent<HeroInfo>().SetBeChoose();
                     GameObject.Find("Fight/Temple").GetComponent<Image>().sprite = m_sprite;
                 }
@@ -40,7 +48,6 @@ public class ReadyHero : MonoBehaviour {
 
                     m_infoList = GameObject.Find("Fight/InfoList").GetComponent<InfoList>();
                     tempName = m_infoList.heroinfo.transform.name;
-                    Debug.Log("选择了" + tempName);
                     GameObject.Find(pre + tempName).GetComponent<HeroInfo>().SetBeChoose();
                 }
                 temple.GetComponent<Image>().sprite = m_sprite;
@@ -54,14 +61,10 @@ public class ReadyHero : MonoBehaviour {
             gameObject.GetComponent<Image>().sprite = m_sprite;
             GameObject temple = GameObject.Find("Fight/Temple");
             GameObject.Find(pre + tempName).GetComponent<HeroInfo>().CancelBeChoose();
-            Debug.Log("关闭了" + tempName);
             i = "noChoose";
         });
 	}
 
-    private void Update()
-    {
-        Debug.Log(i);
-    }
+    
 
 }

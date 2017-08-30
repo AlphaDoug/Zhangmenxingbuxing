@@ -8,9 +8,17 @@ public class EventControl :MonoBehaviour,EventInterface{
 
 	//private bool LevelUpPD=false;
 	
-	public void LeftButton0(){Debug.Log ("0");}
+	public void LeftButton0()
+	{
+		GameObject.Find ("Canvas/Home/InformationLayer").SetActive (true);
+		GameObject.Find ("Canvas/Home/DiscipleLayer").SetActive (false);
+	}
 
-	public void LeftButton1(){Debug.Log ("1");}
+	public void LeftButton1()
+	{
+		GameObject.Find ("Canvas/Home/InformationLayer").SetActive (false);
+		GameObject.Find ("Canvas/Home/DiscipleLayer").SetActive (true);
+	}
 
 	public void LeftButton2(){Debug.Log ("2");}
 

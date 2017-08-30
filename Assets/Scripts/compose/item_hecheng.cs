@@ -33,23 +33,23 @@ public class item_hecheng : MonoBehaviour {
 
 		switch (juanzhou_name) 
 		{
-		case "juanzhou1":
+		case "baimazhi":
 			juanzhou_id = "白麻纸";
 			juanzhou_num = 1;
 			break;
-		case "juanzhou2":
+		case "tengzhi":
 			juanzhou_id = "藤纸";
 			juanzhou_num = 2;
 			break;
-		case "juanzhou3":
+		case "ciqingzhi":
 			juanzhou_id = "瓷青纸";
 			juanzhou_num = 3;
 			break;
-		case "juanzhou4":
+		case "sajinzhi":
 			juanzhou_id = "洒金纸";
 			juanzhou_num = 4;
 			break;
-		case "juanzhou5":
+		case "chengxintangzhi":
 			juanzhou_id = "澄心堂纸";
 			juanzhou_num = 5;
 			break;
@@ -57,23 +57,23 @@ public class item_hecheng : MonoBehaviour {
 
 		switch (maobi_name) 
 		{
-		case "maobi1":
+		case "yanghaobi":
 			maobi_id = "羊毫笔";
 			maobi_num = 1;
 			break;
-		case "maobi2":
+		case "yusunbi":
 			maobi_id = "玉笋笔";
 			maobi_num = 2;
 			break;
-		case "maobi3":
+		case "xiangyalanghao":
 			maobi_id = "象牙狼毫";
 			maobi_num = 3;
 			break;
-		case "maobi4":
+		case "yuzanzihao":
 			maobi_id = "玉瓒紫毫";
 			maobi_num = 4;
 			break;
-		case "maobi5":
+		case "miaojinyunlong":
 			maobi_id = "描金云龙";
 			maobi_num = 5;
 			break;

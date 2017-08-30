@@ -134,6 +134,7 @@
     <Compile Include="Assets\Scripts\Button_enter.cs" />
     <Compile Include="Assets\Scripts\Customs\ActionBar.cs" />
     <Compile Include="Assets\Scripts\Customs\FightManager.cs" />
+    <Compile Include="Assets\Scripts\Customs\SwitchManager.cs" />
     <Compile Include="Assets\Scripts\Customs\Tags.cs" />
     <Compile Include="Assets\Scripts\DataSave\DataStruct.cs" />
     <Compile Include="Assets\Scripts\DataSave\GameDataManager.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Assets\Scripts\UI\ButtonControl.cs" />
     <Compile Include="Assets\Scripts\UI\ChoiceBox.cs" />
     <Compile Include="Assets\Scripts\UI\ConversationFrame.cs" />
+    <Compile Include="Assets\Scripts\UI\Creater.cs" />
     <Compile Include="Assets\Scripts\UI\EventControl.cs" />
     <Compile Include="Assets\Scripts\UI\EventInterface.cs" />
     <Compile Include="Assets\Scripts\UI\GainOrLostArticleItem.cs" />
@@ -207,6 +209,7 @@
     <Compile Include="Assets\Scripts\compose\listComp.cs" />
     <Compile Include="Assets\Scripts\compose\resumeItem.cs" />
     <Compile Include="Assets\Scripts\compose\threepanels.cs" />
+    <Compile Include="Assets\Scripts\compose\zhongzhi_returnItem.cs" />
     <Compile Include="Assets\Scripts\sqlite\SQLiteDB.cs" />
     <Compile Include="Assets\Scripts\sqlite\SQLiteLoad.cs" />
     <Compile Include="Assets\models\effect\Effects_01\Prefebs\DestroyForTime.cs" />

@@ -33,9 +33,9 @@ public class PlayerFight : MonoBehaviour {
     private GameObject actionBar;
     public GameObject skillEffect;
 
-    public float speed = 1f;
-    public float HP = 100;
-    public int attack = 20;
+    public float speed;
+    public float HP;
+    public int attack;
 
     private CharacterController controller;
     private Animation anima;
@@ -47,11 +47,26 @@ public class PlayerFight : MonoBehaviour {
     public string animName_die;
     public float atkTimer;
 
+    private Vector3 poss;
+    private Vector3 rott;
 
-	void Start () {
-        
+    public Image Hpimg;
+    void OnEnable () {
+        Hpimg.fillAmount = 1;
+        isDie = false;
+       // Debug.Log("11111111111111111");
+        isAtked = false;
+
+        state = PlayerFightState.Idle;
+
+        //speed = 1f;
+        HP = 100;
+        //attack = 20;
+
         startPos = transform.position;
         startRot = transform.localEulerAngles;
+        poss = startPos;
+        rott = startRot;
 
         targetPos = startPos;//一开始的目标位置是本身所在的位置
         controller=transform.GetComponent<CharacterController>();
@@ -60,7 +75,7 @@ public class PlayerFight : MonoBehaviour {
         actionBar.transform.SetParent(GameObject.Find("FightCanvas/ActionBar").transform);
         actionBar.transform.localPosition = Vector3.zero;
         actionBar.GetComponent<ActionBar>().speed = speed;
-    }
+}
 	
 	void Update () {
 
@@ -69,7 +84,7 @@ public class PlayerFight : MonoBehaviour {
             state = PlayerFightState.Die;
         }
         else {
-            if (actionBar.GetComponent<Scrollbar>().value == 1)
+            if (actionBar.GetComponent<Scrollbar>().value == 1 && (FightManager.main.state == FightState.Computer || state == PlayerFightState.Atk))
             {
                 FightManager.main.state = FightState.Player;//整个游戏的战斗状态为玩家控制
                 state = PlayerFightState.Atk;
@@ -97,13 +112,18 @@ public class PlayerFight : MonoBehaviour {
         }
 	}
 
-    
+    public void InitialTrans()
+    {
+        transform.position = poss;
+        transform.eulerAngles = rott;
+    }
+
     void PlayerAtk()
     {
-        if (targetPos == startPos && isAtked==false)
+        if ((targetPos == startPos || target == null || target.gameObject.activeSelf == false) && isAtked==false)//如果还没有攻击过,即没有目标
         {
             GameObject[] targets = GameObject.FindGameObjectsWithTag(Tags.Enemy);
-            Debug.Log("玩家个数" + targets.Length);
+          //  Debug.Log("玩家个数" + targets.Length);
             if (targets.Length > 0)
             {
                 target = targets[Random.Range(0, targets.Length)].transform;
@@ -138,7 +158,6 @@ public class PlayerFight : MonoBehaviour {
                 }
                 else {
                     StartCoroutine(WaitAtkEnd());
-                    Facade.Instance.PlayNormalSound(AudioManager.Sound_People);
                 }
             }
            
@@ -184,6 +203,7 @@ public class PlayerFight : MonoBehaviour {
     IEnumerator WaitAtkEnd()
     {
         anima.CrossFade(animName_atk);
+        Facade.Instance.PlayNormalSound(AudioManager.Sound_People);
         yield return new WaitForSeconds(atkTimer);
         if (isAtked == false)
         {
@@ -224,6 +244,7 @@ public class PlayerFight : MonoBehaviour {
         if (isDie) return;
         StartCoroutine(waitDamageEnd());
         HP -= value;
+        Hpimg.fillAmount -= (float)value / 100;
         if (HP <= 0)
         {
             isDie = true;
@@ -242,7 +263,8 @@ public class PlayerFight : MonoBehaviour {
     {
         anima.CrossFade(animName_die);
         yield return new WaitForSeconds(anima.GetClip(animName_die).length);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
         Destroy(actionBar);
     }
 }

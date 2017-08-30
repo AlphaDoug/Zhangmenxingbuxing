@@ -186,6 +186,7 @@
      <Compile Include="Assets\Anima2D\Scripts\Editor\WeightEditor.cs" />
      <Compile Include="Assets\Anima2D\Scripts\Editor\WindowEditorTool.cs" />
      <Compile Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenAnimationInspector.cs" />
+     <Compile Include="Assets\Editor\ChangeFontWindow.cs" />
      <Compile Include="Assets\Scripts\PolyNav2D\Editor\PolyNav2DInspector.cs" />
      <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
      <None Include="Assets\Demigiant\DemiLib\Core\DemiLib.xml" />
@@ -196,6 +197,7 @@
      <None Include="Assets\Anima2D\Examples\Shaders\Unlit-Alpha-Cull-off.shader" />
      <None Include="Assets\Anima2D\Licenses.txt" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
+     <None Include="Assets\Resources\Sounds\ReadmeFirst.txt" />
      <None Include="Assets\Anima2D\Examples\Shaders\VertexLitOneDirectional.shader" />
      <None Include="Assets\Anima2D\Readme.txt" />
      <None Include="Assets\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />

@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 public enum EnemyFightState { 
     Idle,
-    Atk,
+    Atkgo,
+    Atkback,
     Die
 }
 public class EnemyFight : MonoBehaviour {
@@ -31,16 +32,33 @@ public class EnemyFight : MonoBehaviour {
     public string animName_run;
     public string animName_die;
     public string animName_damege;
+    private bool abc;
 
-	void Start () {
+    private Vector3 poss;
+    private Vector3 rott;
+
+    public Image Hpimg;
+
+    void OnEnable () {
+        Hpimg.fillAmount = 1;
+        abc = false;
+        state = EnemyFightState.Idle;
+        isAtk = false;
+         isDie = false;
+         HP = 100;
+             //attack = 10;
+             //speed = 1;
         startPos = transform.position;
         startRot = transform.localEulerAngles;
+        poss = startPos;
+        rott = startRot;
         anima=transform.GetChild(0).GetComponent<Animation>();
         actionBar = Instantiate(actionBarPre.gameObject);
         actionBar.transform.SetParent(GameObject.Find("FightCanvas/ActionBar").transform);
         actionBar.transform.localPosition = Vector3.zero;
         actionBar.GetComponent<ActionBar>().speed = speed;
-    }
+        target = null;
+}
 	
 	void Update () {
         
@@ -49,10 +67,12 @@ public class EnemyFight : MonoBehaviour {
             state = EnemyFightState.Die;
         }
         else {
-            if (actionBar.GetComponent<Scrollbar>().value == 1)
+           // Debug.Log(state);
+            if (actionBar.GetComponent<Scrollbar>().value == 1 && (FightManager.main.state == FightState.Computer || abc == true))
             {
+                abc = true;
                 FightManager.main.state = FightState.Enemy;//把整个游戏的战斗状态为敌人控制
-                state = EnemyFightState.Atk;//敌人状态切换为攻击状态
+                state = EnemyFightState.Atkgo;//敌人状态切换为攻击状态
             }
         }
 
@@ -60,7 +80,10 @@ public class EnemyFight : MonoBehaviour {
         {
             case EnemyFightState.Idle:
                 break;
-            case EnemyFightState.Atk:
+            case EnemyFightState.Atkgo:
+                OnAtk();
+                break;
+            case EnemyFightState.Atkback:
                 OnAtk();
                 break;
             case EnemyFightState.Die:
@@ -70,22 +93,26 @@ public class EnemyFight : MonoBehaviour {
                 break;
         }
 	}
-
+    public void InitialTrans()
+    {
+        transform.position = poss;
+        transform.eulerAngles = rott;
+    }
     void OnAtk()
     {
-        if (target == null)//如果还没有攻击过,即没有目标
+        if (target == null || target.gameObject.activeSelf==false)//如果还没有攻击过,即没有目标
         {
             GameObject[] targets = GameObject.FindGameObjectsWithTag(Tags.Player);//寻找主角
-            Debug.Log("玩家个数" + targets.Length);
+            //Debug.Log("玩家个数" + targets.Length);
             if (targets.Length > 0)
             {
                 target = targets[Random.Range(0, targets.Length)].transform;
                 targetPos = target.transform.position;//这里为多个主角的时候，敌人会随机选取主角
             }
-            
-            
+
         }
         else {
+           // Debug.Log(target.gameObject.activeSelf);
             float dis = Vector3.Distance(transform.position, targetPos);
             if (dis > 1.5f)
             {
@@ -103,14 +130,14 @@ public class EnemyFight : MonoBehaviour {
                     transform.localPosition = startPos;
                     FightManager.main.FinishRound();//结束一个回合
                     actionBar.GetComponent<Scrollbar>().value = 0;
-                    state = EnemyFightState.Idle;
+                        state = EnemyFightState.Idle;
                     isAtk = false;
                     targetPos = target.transform.position;
+                    abc = false;
                 }
                 else
                 {
                     StartCoroutine(waitAtkEnd());
-                    Facade.Instance.PlayNormalSound(AudioManager.Sound_Tiger);
                 }
             }
         }
@@ -119,7 +146,7 @@ public class EnemyFight : MonoBehaviour {
     IEnumerator waitAtkEnd()
     {
         anima.CrossFade(animName_atk);
-        
+        Facade.Instance.PlayNormalSound(AudioManager.Sound_Tiger);
         yield return new WaitForSeconds(0.6f);//anima.GetClip(animName_atk).length
         if (isAtk == false)
         {
@@ -135,6 +162,7 @@ public class EnemyFight : MonoBehaviour {
     {
         StartCoroutine(waitDamageEnd());
         HP -= value;
+        Hpimg.fillAmount -= (float)value / 100;
         if (HP <= 0)
         {
             isDie = true;
@@ -152,7 +180,8 @@ public class EnemyFight : MonoBehaviour {
     {
         anima.CrossFade(animName_die);
         yield return new WaitForSeconds(anima.GetClip(animName_die).length);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
         Destroy(actionBar);
     }
 }

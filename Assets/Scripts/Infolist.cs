@@ -37,17 +37,17 @@ public class Infolist : MonoBehaviour {
     public void Update () {
         if (m_toggle.isOn)
         {
-            dzname.text = "姓名： " + confPlane.nameC;
-            level.text = "等级： " + confPlane.level.ToString();
-            status.text = "状态： " + confPlane.content;
-            strength.text = "体力： " + confPlane.strength.ToString();
-            exp.text = "经验： " + confPlane.exp.ToString();
-            hp.text = "生命： " + confPlane.hp.ToString();
-            atk.text = "攻击力： " + confPlane.attack.ToString();
-            def.text = "防御力： " + confPlane.defense.ToString();
-            wx.text = "悟性： " + confPlane.WX.ToString();
-            wq.text = "武器精通： " + confPlane.WQ.ToString();
-            sh.text = "生活精通： " + confPlane.SH.ToString();
+            dzname.text = "姓名:" + confPlane.nameC;
+            level.text = "等级:" + confPlane.level.ToString();
+            status.text = "状态:" + confPlane.content;
+            strength.text = "体力:" + confPlane.strength.ToString();
+            exp.text = "经验:" + confPlane.exp.ToString();
+            hp.text = "生命:" + confPlane.hp.ToString();
+            atk.text = "攻击力:" + confPlane.attack.ToString();
+            def.text = "防御力:" + confPlane.defense.ToString();
+            wx.text = "悟性:" + confPlane.WX.ToString();
+            wq.text = "武器精通:" + confPlane.WQ.ToString();
+            sh.text = "生活精通:" + confPlane.SH.ToString();
             if(ImageDic.imgDic.TryGetValue(transform.name, out value))
                 Lihui.sprite = value;
             

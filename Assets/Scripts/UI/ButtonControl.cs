@@ -8,7 +8,7 @@ public class ButtonControl : MonoBehaviour
 {
     public Text name;
     public Text shengwang;
-    public Slider shanezhi;
+	public Image shanezhi;
 
 	private Button[] buttons;
 	private Button LevelUpButton;
@@ -38,7 +38,7 @@ public class ButtonControl : MonoBehaviour
 
         name.text = "门派名称："+ GameDataManager.data.menpaimingcheng;
         shengwang.text = "声望值："+ GameDataManager.data.shengwangzhi.ToString();
-        shanezhi.value = GameDataManager.data.shanezhi / 1000.0f;
+		shanezhi.fillAmount = GameDataManager.data.shanezhi / 1000.0f;
 
     }
 		
